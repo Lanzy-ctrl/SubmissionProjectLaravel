@@ -74,6 +74,8 @@ Route::prefix('petugas')->name('petugas.')->group(function () {
     Route::get('/anggota/{id}', fn (int $id) => "Anggota dengan ID: {$id}")
         ->name('anggota');
 
+    Route::get('/jurusan/{id}', [JurusanController::class, 'show']);
+
 });
 
 
@@ -91,3 +93,18 @@ use App\Http\Controllers\MahasiswaController;
 Route::get('/profil', [MahasiswaController::class, 'profil'])->name('mahasiswa.profil');
 Route::get('/mahasiswa', [MahasiswaController::class, 'daftar'])->name('mahasiswa.daftar');
 Route::get('/mahasiswa/{nim}', [MahasiswaController::class, 'detail'])->name('mahasiswa.detail');
+
+use App\Http\Controllers\JurusanControlle;
+
+Route::get('/jurusan',[JurusanControlle::class,'index'])
+->name('jurusan.index');
+Route::get('/jurusan/create',[JurusanControlle::class,'create'])
+->name('jurusan.create');
+Route::post('/jurusan', [JurusanControlle::class, 'store'])
+->name('jurusan.store');
+
+use App\Http\Controllers\MatakuliahController;
+
+Route::get('/matakuliah', [MatakuliahController::class, 'index'])->name('matakuliah.index');
+Route::get('/matakuliah/create', [MatakuliahController::class, 'create'])->name('matakuliah.create');
+Route::post('/matakuliah', [MatakuliahController::class, 'store'])->name('matakuliah.store');
